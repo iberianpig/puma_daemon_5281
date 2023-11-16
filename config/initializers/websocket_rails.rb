@@ -1,5 +1,16 @@
 require 'websocket-rails'
 require 'faye/websocket'
+
+WebsocketRails.singleton_class.prepend Module.new {
+      puts "--webscoket_rails---"
+      puts "$PID: #{Process.pid}"
+      puts "$PPID: #{Process.ppid}"
+      puts "↓ websocket_railsの親プロセス"
+      puts `ps --pid #{Process.ppid} -o comm=,pid,ppid`
+      puts "--webscoket_rails---"
+}
+
+
 WebsocketRails.setup do |config|
 
   # Uncomment to override the default log level. The log level can be
